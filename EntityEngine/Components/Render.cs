@@ -12,7 +12,7 @@ namespace EntityEngine.Components
         public Color[] ColorData { get; protected set; }
         public float Alpha = 1f;
         public float Scale = 1f;
-
+        public Vector2 Origin { get { return new Vector2(Texture.Width/2.0f, Texture.Height/2.0f); } }
         public virtual Rectangle DrawRect { get { return Entity.Body.BoundingBox; } }
 
         public Render(Entity e, Texture2D texture) : base(e)
@@ -26,7 +26,7 @@ namespace EntityEngine.Components
         {
             if(this == null || Texture == null || Entity.Body == null) throw new NullReferenceException();
             sb.Draw(Texture, DrawRect, null, Color * Alpha, Entity.Body.Angle, 
-                new Vector2(Texture.Width/2, Texture.Height/2), SpriteEffects.None, 0f);
+                Origin, SpriteEffects.None, 0f);
         }
     }
 }

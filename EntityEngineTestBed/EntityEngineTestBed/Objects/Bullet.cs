@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace EntityEngineTestBed.Objects
 {
-    public class Bullet : Entity
+    public class Bullet : AsteroidEntity
     {
         public int Age { get; private set; }
         public Bullet(Texture2D bullettexture, Vector2 position, EntityGame eg) : base(eg)

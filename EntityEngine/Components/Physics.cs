@@ -28,5 +28,11 @@ namespace EntityEngine.Components
             Velocity.X += (float)Math.Sin(-Entity.Body.Angle) * power;
             Velocity.Y += (float)Math.Cos(-Entity.Body.Angle) * power;
         }
+
+        public void Thrust(float power, float angle)
+        {
+            Velocity.X += (float)Math.Sin(-angle) * power;
+            Velocity.Y += (float)Math.Cos(-angle) * power;
+        }
     }
 }

@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsteroidGame.cs" />
+    <Compile Include="Objects\AsteroidEntity.cs" />
     <Compile Include="Objects\Bullet.cs" />
     <Compile Include="Objects\Gun.cs" />
     <Compile Include="Objects\Ship.cs" />

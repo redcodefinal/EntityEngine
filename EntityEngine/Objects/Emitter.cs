@@ -17,6 +17,8 @@ namespace EntityEngine.Objects
         public bool AutoEmit;
         public int EmitAmount = 1;
 
+        
+
         public Emitter(Entity e, Texture2D texture, Vector2 tilesize) : base(e)
         {
             Texture = texture;
@@ -29,7 +31,7 @@ namespace EntityEngine.Objects
                 Emit(EmitAmount);
         }
 
-        protected Particle GenerateNewParticle()
+        protected virtual Particle GenerateNewParticle()
         {
             var p = new Particle(0, Entity.Body.Position/2, 30, this, Entity.GameRef) {Physics = {Velocity = Vector2.UnitY}};
             return p;
