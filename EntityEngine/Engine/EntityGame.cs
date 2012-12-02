@@ -43,12 +43,18 @@ namespace EntityEngine.Engine
             g.ApplyChanges();
         }
 
-        public void StartGame()
+        public virtual void StartGame()
         {
             Entities = NewEntities;
         }
 
-        public void Update()
+        public virtual void ResetGame()
+        {
+            Entities = new List<Entity>();
+            NewEntities = new List<Entity>();
+        }
+
+        public virtual void Update()
         {
             //Replace the old entities
             Entities = NewEntities.ToList();
@@ -57,13 +63,13 @@ namespace EntityEngine.Engine
                 e.Update();
         }
 
-        public void Draw()
+        public virtual void Draw()
         {
             foreach (var e in Entities)
                 e.Draw(SpriteBatch);
         }
 
-        public void AddEntity(Entity entity)
+        public virtual void AddEntity(Entity entity)
         {
             //Subscribe to the destory event
             entity.DestroyEvent += RemoveEntity;
@@ -72,18 +78,18 @@ namespace EntityEngine.Engine
             NewEntities.Add(entity);
         }
 
-        public void RemoveEntity(Entity entity)
+        public virtual void RemoveEntity(Entity entity)
         {
             //Unsubscribe from the destroy event
             NewEntities.Remove(entity);
         }
 
-        public void Pause()
+        public virtual void Pause()
         {
             Paused = true;
         }
 
-        public void Unpause()
+        public virtual void Unpause()
         {
             Paused = false;
         }

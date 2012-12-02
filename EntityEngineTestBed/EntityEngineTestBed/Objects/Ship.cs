@@ -78,7 +78,7 @@ namespace EntityEngineTestBed.Objects
 
     class ShipEmitter : Emitter
     {
-        Random _rand = new Random(DateTime.Now.Second);
+        Random _rand = new Random(DateTime.Now.Millisecond);
         public ShipEmitter(Entity e, Texture2D particletexture) : base(e, particletexture, Vector2.One*5)
         {
             
@@ -99,21 +99,19 @@ namespace EntityEngineTestBed.Objects
             Vector2 unrotatedposition = new Vector2(
                 Entity.Body.BoundingBox.X,
                 Entity.Body.BoundingBox.Bottom - 10);
-
+            float angle = Entity.Body.Angle;
             Vector2 position = new Vector2(
-                (float)(Math.Cos(Entity.Body.Angle) * (unrotatedposition.X - origin.X) - Math.Sin(Entity.Body.Angle) * (unrotatedposition.Y - origin.Y) + origin.X),
-                (float)(Math.Sin(Entity.Body.Angle) * (unrotatedposition.X - origin.X) + Math.Cos(Entity.Body.Angle) * (unrotatedposition.Y - origin.Y) + origin.Y)
+                (float)(Math.Cos(angle) * (unrotatedposition.X - origin.X) - Math.Sin(angle) * (unrotatedposition.Y - origin.Y) + origin.X),
+                (float)(Math.Sin(angle) * (unrotatedposition.X - origin.X) + Math.Cos(angle) * (unrotatedposition.Y - origin.Y) + origin.Y)
             );
 
-            float angle = Entity.Body.Angle;
+            
 
             Particle p = new Particle(index, position, ttl, this, Entity.GameRef);
 
             float anglev = (float)_rand.NextDouble() - .5f;
-            p.Physics.Thrust((float)_rand.NextDouble(), Entity.Body.Angle - anglev);
+            p.Physics.Thrust((float)_rand.NextDouble(), angle - anglev);
             return p;
         }
-
-
     }
 }

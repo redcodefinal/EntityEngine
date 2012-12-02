@@ -11,7 +11,7 @@ namespace EntityEngine.Objects
     public class Particle : TileEntity
     {
         public int TimeToLive { get; protected set; }
-
+        public int MaxTimeToLive { get; private set; }
         public Particle(int index, Vector2 position, int ttl, Emitter e, EntityGame eg) : base(eg)
         {
             Index = index;
@@ -23,6 +23,7 @@ namespace EntityEngine.Objects
             Components.Add(Physics);
 
             TimeToLive = ttl;
+            MaxTimeToLive = TimeToLive;
         }
 
         public override void Update()

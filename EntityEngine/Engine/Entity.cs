@@ -39,6 +39,13 @@ namespace EntityEngine.Engine
         {
             if (DestroyEvent != null)
                 DestroyEvent(this);
+
+            foreach (var target in Targets)
+                target.Targets.Remove(this);
+
+            foreach (var entity in Group)
+                entity.Group.Remove(this);
+            
         }
 
         virtual public void Update()

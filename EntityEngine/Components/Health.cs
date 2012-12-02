@@ -11,7 +11,7 @@ namespace EntityEngine.Components
         public event Entity.EventHandler HurtEvent;
         public event Entity.EventHandler DiedEvent;
 
-        public int HitPoints { get; private set; }
+        public int HitPoints { get; set; }
         public bool Alive { get { return !(HitPoints <= 0); } }
 
 
