@@ -60,7 +60,7 @@ namespace EntityEngineTestBed.Objects
         protected override Particle GenerateNewParticle()
         {
             int index = _rand.Next(0, 2);
-            int ttl = _rand.Next(5, 10);
+            int ttl = _rand.Next(10, 15);
 
             Particle p = new Particle(index, Entity.Body.Position, ttl, this, Entity.GameRef);
             float angle = Entity.Body.Angle;
