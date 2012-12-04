@@ -16,17 +16,17 @@ namespace EntityEngine.Engine
         public Render Render { get; protected set; }
         public Physics Physics { get; protected set; }
         public Health Health { get; protected set; }
-        public EntityGame GameRef { get; private set; }
+        public EntityState StateRef { get; private set; }
         public List<Entity> Targets { get; set; }
         public List<Entity> Group { get; set; }
         public List<Component> Components { get; protected set; } 
 
-        public Entity(EntityGame eg)
+        public Entity(EntityState es)
         {
             Targets = new List<Entity>();
             Group = new List<Entity>();
             Components = new List<Component>();
-            GameRef = eg;
+            StateRef = es;
         }
 
         virtual public void AddEntity(Entity e)

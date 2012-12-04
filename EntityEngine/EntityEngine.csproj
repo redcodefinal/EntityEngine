@@ -100,6 +100,7 @@
     <Compile Include="Engine\Entity.cs" />
     <Compile Include="Components\IComponent.cs" />
     <Compile Include="Engine\EntityGame.cs" />
+    <Compile Include="Engine\EntityState.cs" />
     <Compile Include="Engine\IEntity.cs" />
     <Compile Include="Engine\TileEntity.cs" />
     <Compile Include="Input\GamePadInput.cs" />

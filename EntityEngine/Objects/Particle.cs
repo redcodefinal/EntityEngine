@@ -10,9 +10,9 @@ namespace EntityEngine.Objects
 {
     public class Particle : TileEntity
     {
-        public int TimeToLive { get; protected set; }
+        public int TimeToLive { get; set; }
         public int MaxTimeToLive { get; private set; }
-        public Particle(int index, Vector2 position, int ttl, Emitter e, EntityGame eg) : base(eg)
+        public Particle(int index, Vector2 position, int ttl, Emitter e) : base(e.Entity.StateRef)
         {
             Index = index;
             Body = new Body(this, position, e.TileSize);
@@ -33,6 +33,25 @@ namespace EntityEngine.Objects
             TimeToLive--;
             if(TimeToLive <= 0)
                 Destroy();
+        }
+    }
+
+    public class FadeParticle : Particle
+    {
+        public int FadeAge;
+        public FadeParticle(int index, Vector2 position, int fadeage, Emitter e)
+            : base(index, position, fadeage, e)
+        {
+            FadeAge = fadeage;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (TimeToLive < FadeAge)
+            {
+                Render.Alpha -= 1f / FadeAge;
+            }
         }
     }
 }

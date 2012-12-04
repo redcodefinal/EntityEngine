@@ -8,7 +8,7 @@ namespace EntityEngineTestBed.Objects
 {
     public class AsteroidEntity : Entity
     {
-        public AsteroidEntity(EntityGame eg) : base(eg)
+        public AsteroidEntity(EntityState es) : base(es)
         {
             
         }
@@ -18,13 +18,13 @@ namespace EntityEngineTestBed.Objects
             base.Update();
             const int buffer = 20;
             if (Body.Position.X < -buffer)
-                Body.Position.X = GameRef.Viewport.Right + buffer;
-            else if (Body.Position.X > GameRef.Viewport.Right + buffer)
+                Body.Position.X = StateRef.GameRef.Viewport.Right + buffer;
+            else if (Body.Position.X > StateRef.GameRef.Viewport.Right + buffer)
                 Body.Position.X = -buffer;
 
             if (Body.Position.Y < -buffer)
-                Body.Position.Y = GameRef.Viewport.Bottom + buffer;
-            else if (Body.Position.Y > GameRef.Viewport.Bottom + buffer)
+                Body.Position.Y = StateRef.GameRef.Viewport.Bottom + buffer;
+            else if (Body.Position.Y > StateRef.GameRef.Viewport.Bottom + buffer)
                 Body.Position.Y = -buffer;
         }
     }

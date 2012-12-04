@@ -11,12 +11,28 @@ namespace EntityEngine.Engine
     public class EntityGame
     {
         public bool Paused { get; protected set; }
-        public List<Entity> Entities { get; protected set; }
-        public List<Entity> NewEntities { get; protected set; }
+
+        public delegate void EntityGameEventHandler(EntityState es);
+
+        public event EntityGameEventHandler StateChange;
+
 
         public Rectangle Viewport { get; private set; }
         public Game Game;
         public SpriteBatch SpriteBatch;
+
+        private EntityState _currentstate;
+        public EntityState CurrentState
+        {
+            get { return _currentstate; }
+            set 
+            { 
+                _currentstate = value;
+                if (StateChange != null)
+                    StateChange(_currentstate);
+            }
+        }
+
 
         public EntityGame(Game game, GraphicsDeviceManager g, Rectangle viewport, SpriteBatch spriteBatch)
         {
@@ -25,8 +41,6 @@ namespace EntityEngine.Engine
 
             game.Components.Add(new InputHandler(game));
 
-            Entities = new List<Entity>();
-            NewEntities = new List<Entity>();
             Paused = false;
             
             Viewport = viewport;
@@ -43,45 +57,14 @@ namespace EntityEngine.Engine
             g.ApplyChanges();
         }
 
-        public virtual void StartGame()
-        {
-            Entities = NewEntities;
-        }
-
-        public virtual void ResetGame()
-        {
-            Entities = new List<Entity>();
-            NewEntities = new List<Entity>();
-        }
-
         public virtual void Update()
         {
-            //Replace the old entities
-            Entities = NewEntities.ToList();
-
-            foreach (var e in Entities)
-                e.Update();
+            CurrentState.Update();
         }
 
         public virtual void Draw()
         {
-            foreach (var e in Entities)
-                e.Draw(SpriteBatch);
-        }
-
-        public virtual void AddEntity(Entity entity)
-        {
-            //Subscribe to the destory event
-            entity.DestroyEvent += RemoveEntity;
-            entity.CreateEvent += AddEntity;
-
-            NewEntities.Add(entity);
-        }
-
-        public virtual void RemoveEntity(Entity entity)
-        {
-            //Unsubscribe from the destroy event
-            NewEntities.Remove(entity);
+            CurrentState.Draw(SpriteBatch);
         }
 
         public virtual void Pause()

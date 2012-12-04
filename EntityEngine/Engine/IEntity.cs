@@ -13,7 +13,7 @@ namespace EntityEngine.Engine
         List<Entity> Targets { get; set; }
         List<Entity> Group { get; set; }
 
-        EntityGame GameRef { get; }
+        EntityState StateRef { get; }
 
         void AddEntity(Entity e);
         void Destroy(Entity e = null);

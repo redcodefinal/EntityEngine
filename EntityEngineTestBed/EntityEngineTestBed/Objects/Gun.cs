@@ -18,7 +18,7 @@ namespace EntityEngineTestBed.Objects
 
         public override void Fire()
         {
-            var b = new Bullet(BulletTexture, Entity.Body.Position, Entity.GameRef)
+            var b = new Bullet(BulletTexture, Entity.Body.Position, Entity.StateRef)
             {
                 Targets = Entity.Targets,
                 Body = { Position = Entity.Body.Position, Angle = Entity.Body.Angle },

@@ -12,7 +12,7 @@ namespace EntityEngine.Components
         public Color[] ColorData { get; protected set; }
         public float Alpha = 1f;
         public float Scale = 1f;
-        public Vector2 Origin { get { return new Vector2(Texture.Width/2.0f, Texture.Height/2.0f); } }
+        public virtual Vector2 Origin { get { return new Vector2(Texture.Width/2.0f, Texture.Height/2.0f); } }
         public virtual Rectangle DrawRect { get { return Entity.Body.BoundingBox; } }
 
         public Render(Entity e, Texture2D texture) : base(e)

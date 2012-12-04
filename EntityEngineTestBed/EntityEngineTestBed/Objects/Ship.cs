@@ -14,12 +14,12 @@ namespace EntityEngineTestBed.Objects
 {
     public class Ship : AsteroidEntity
     {
-        private KeyboardInput _attackkey, _upkey, _leftkey, _rightkey, _downkey;
+        private KeyboardInput _attackkey, _upkey, _leftkey, _rightkey, _downkey, _debugkey;
         public Weapon Weapon { get; protected set; }
-        public Emitter Emitter;
-        public Ship(Texture2D shiptexture, Texture2D bullettexture, EntityGame eg) : base(eg)
+        public Emitter ThrustEmitter, DeathEmitter;
+        public Ship(Texture2D shiptexture, Texture2D bullettexture, EntityState es) : base(es)
         {
-            Body = new Body(this, new Vector2(eg.Viewport.Width/2.0f, eg.Viewport.Height/2.0f),
+            Body = new Body(this, new Vector2(es.GameRef.Viewport.Width / 2.0f, es.GameRef.Viewport.Height / 2.0f),
                             new Vector2(shiptexture.Width, shiptexture.Height));
             Components.Add(Body);
 
@@ -36,14 +36,20 @@ namespace EntityEngineTestBed.Objects
             Health.DiedEvent += Destroy;
             Components.Add(Health);
 
-            Emitter = new ShipEmitter(this, eg.Game.Content.Load<Texture2D>(@"particles/shipparticle"));
-            Components.Add(Emitter);
+            ThrustEmitter = new ThrustEmitter(this, StateRef.GameRef.Game.Content.Load<Texture2D>(@"particles/thrustparticle"));
+            Components.Add(ThrustEmitter);
 
+            DeathEmitter = new DeathEmitter(this, StateRef.GameRef.Game.Content.Load<Texture2D>(@"particles/shipdeathparticle123"));
+            Components.Add(DeathEmitter);
+
+            Health.DiedEvent += EmitEventHandler;
+            
             _attackkey = new KeyboardInput(Keys.Enter);
             _upkey = new KeyboardInput(Keys.W);
             _downkey = new KeyboardInput(Keys.S);
             _leftkey = new KeyboardInput(Keys.A);
             _rightkey = new KeyboardInput(Keys.D);
+            _debugkey = new KeyboardInput(Keys.L);
 
         }
 
@@ -54,12 +60,17 @@ namespace EntityEngineTestBed.Objects
             ControlShip();
         }
 
+        public void EmitEventHandler(Entity e = null)
+        {
+            DeathEmitter.Emit(100);
+        }
+
         virtual protected void ControlShip()
         {
             if (_upkey.Down())
             {
                 Physics.Thrust(-.25f);
-                Emitter.Emit(1);
+                ThrustEmitter.Emit(1);
             }
             else if (_downkey.Down())
             {
@@ -73,15 +84,21 @@ namespace EntityEngineTestBed.Objects
 
             if (_attackkey.RapidFire(150))
                 Weapon.Fire();
+
+            //TODO: Remove debug code!!!!
+            if (_debugkey.Pressed())
+            {
+                EmitEventHandler();
+            }
         }
     }
 
-    class ShipEmitter : Emitter
+    class ThrustEmitter : Emitter
     {
         Random _rand = new Random(DateTime.Now.Millisecond);
-        public ShipEmitter(Entity e, Texture2D particletexture) : base(e, particletexture, Vector2.One*5)
+        public ThrustEmitter(Entity e, Texture2D particletexture) : base(e, particletexture, Vector2.One*5)
         {
-            
+
         }
 
         protected override Particle GenerateNewParticle()
@@ -107,11 +124,40 @@ namespace EntityEngineTestBed.Objects
 
             
 
-            Particle p = new Particle(index, position, ttl, this, Entity.GameRef);
+            Particle p = new Particle(index, position, ttl, this);
 
             float anglev = (float)_rand.NextDouble() - .5f;
             p.Physics.Thrust((float)_rand.NextDouble(), angle - anglev);
             return p;
+        }
+    }
+
+    class DeathEmitter : Emitter
+    {
+        public DeathEmitter(Entity e, Texture2D texture) : base(e, texture, Vector2.One*5)
+        {
+        }
+
+        public override void Emit(int amount)
+        {
+            Random random = new Random(DateTime.Now.Millisecond);
+            float pislice = MathHelper.TwoPi/amount;
+            for (int i = 0; i < amount; i++)
+            {
+                int index = random.Next(0, 3);
+
+                float angle = pislice*i;
+                Vector2 position = Entity.Body.Position;
+
+                var p = new FadeParticle(index, position, 40, this);
+                p.Body.Angle = angle - (float)random.NextDouble();
+                p.Physics.AngularVelocity = (float) random.NextDouble()*.5f - .1f;
+                p.TimeToLive = 200;
+                p.Physics.Drag = 0.99f;
+                p.Physics.Thrust((float) random.NextDouble()*2.0f + 1f);
+                p.Render.Scale = (float) random.NextDouble() + .75f;
+                Entity.AddEntity(p);
+            }
         }
     }
 }

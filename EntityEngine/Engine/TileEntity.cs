@@ -12,7 +12,7 @@ namespace EntityEngine.Engine
     {
         public int Index;
 
-        public TileEntity(EntityGame eg) : base(eg)
+        public TileEntity(EntityState es) : base(es)
         {
         }
     }
