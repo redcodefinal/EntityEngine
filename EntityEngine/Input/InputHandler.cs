@@ -11,19 +11,19 @@ namespace EntityEngine.Input
 {
     public sealed class InputHandler : GameComponent
     {
-        internal static GameTime gametime;
+        internal static GameTime Gametime;
 
         #region Keyboard Field Region
 
-        private static KeyboardState keyboardState;
-        private static KeyboardState lastKeyboardState;
+        private static KeyboardState _keyboardState;
+        private static KeyboardState _lastKeyboardState;
 
         #endregion Keyboard Field Region
 
         #region Game Pad Field Region
 
-        private static GamePadState[] gamePadStates;
-        private static GamePadState[] lastGamePadStates;
+        private static GamePadState[] _gamePadStates;
+        private static GamePadState[] _lastGamePadStates;
 
         #endregion Game Pad Field Region
 
@@ -31,12 +31,12 @@ namespace EntityEngine.Input
 
         public static KeyboardState KeyboardState
         {
-            get { return keyboardState; }
+            get { return _keyboardState; }
         }
 
         public static KeyboardState LastKeyboardState
         {
-            get { return lastKeyboardState; }
+            get { return _lastKeyboardState; }
         }
 
         #endregion Keyboard Property Region
@@ -45,12 +45,12 @@ namespace EntityEngine.Input
 
         public static GamePadState[] GamePadStates
         {
-            get { return gamePadStates; }
+            get { return _gamePadStates; }
         }
 
         public static GamePadState[] LastGamePadStates
         {
-            get { return lastGamePadStates; }
+            get { return _lastGamePadStates; }
         }
 
         #endregion Game Pad Property Region
@@ -60,31 +60,26 @@ namespace EntityEngine.Input
         public InputHandler(Game game)
             : base(game)
         {
-            keyboardState = Keyboard.GetState();
-            gamePadStates = new GamePadState[Enum.GetValues(typeof(PlayerIndex)).Length];
+            _keyboardState = Keyboard.GetState();
+            _gamePadStates = new GamePadState[Enum.GetValues(typeof(PlayerIndex)).Length];
 
             foreach (PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
-                gamePadStates[(int)index] = GamePad.GetState(index);
+                _gamePadStates[(int)index] = GamePad.GetState(index);
         }
 
         #endregion Constructor Region
 
         #region XNA methods
 
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
         public override void Update(GameTime gameTime)
         {
-            gametime = gameTime;
-            lastKeyboardState = keyboardState;
-            keyboardState = Keyboard.GetState();
+            Gametime = gameTime;
+            _lastKeyboardState = _keyboardState;
+            _keyboardState = Keyboard.GetState();
 
-            lastGamePadStates = (GamePadState[])gamePadStates.Clone();
+            _lastGamePadStates = (GamePadState[])_gamePadStates.Clone();
             foreach (PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
-                gamePadStates[(int)index] = GamePad.GetState(index);
+                _gamePadStates[(int)index] = GamePad.GetState(index);
 
             base.Update(gameTime);
         }
@@ -95,8 +90,8 @@ namespace EntityEngine.Input
 
         public static void Flush()
         {
-            lastKeyboardState = keyboardState;
-            lastGamePadStates = gamePadStates;
+            _lastKeyboardState = _keyboardState;
+            _lastGamePadStates = _gamePadStates;
         }
 
         #endregion General Method Region
@@ -105,19 +100,19 @@ namespace EntityEngine.Input
 
         public static bool KeyReleased(Keys key)
         {
-            return keyboardState.IsKeyUp(key) &&
-                lastKeyboardState.IsKeyDown(key);
+            return _keyboardState.IsKeyUp(key) &&
+                _lastKeyboardState.IsKeyDown(key);
         }
 
         public static bool KeyPressed(Keys key)
         {
-            return keyboardState.IsKeyDown(key) &&
-                lastKeyboardState.IsKeyUp(key);
+            return _keyboardState.IsKeyDown(key) &&
+                _lastKeyboardState.IsKeyUp(key);
         }
 
         public static bool KeyDown(Keys key)
         {
-            return keyboardState.IsKeyDown(key);
+            return _keyboardState.IsKeyDown(key);
         }
 
         #endregion Keyboard Region
@@ -126,19 +121,19 @@ namespace EntityEngine.Input
 
         public static bool ButtonReleased(Buttons button, PlayerIndex index)
         {
-            return gamePadStates[(int)index].IsButtonUp(button) &&
-                lastGamePadStates[(int)index].IsButtonDown(button);
+            return _gamePadStates[(int)index].IsButtonUp(button) &&
+                _lastGamePadStates[(int)index].IsButtonDown(button);
         }
 
         public static bool ButtonPressed(Buttons button, PlayerIndex index)
         {
-            return gamePadStates[(int)index].IsButtonDown(button) &&
-                lastGamePadStates[(int)index].IsButtonUp(button);
+            return _gamePadStates[(int)index].IsButtonDown(button) &&
+                _lastGamePadStates[(int)index].IsButtonUp(button);
         }
 
         public static bool ButtonDown(Buttons button, PlayerIndex index)
         {
-            return gamePadStates[(int)index].IsButtonDown(button);
+            return _gamePadStates[(int)index].IsButtonDown(button);
         }
 
         #endregion Game Pad Region

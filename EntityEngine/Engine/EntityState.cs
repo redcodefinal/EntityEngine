@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace EntityEngine.Engine
 {
-    public class EntityState 
+    public class EntityState
     {
         public List<Entity> Entities { get; protected set; }
-        public List<Entity> NewEntities { get; protected set; }
-        public EntityGame GameRef { get; private set; }
 
+        public List<Entity> NewEntities { get; protected set; }
+
+        public EntityGame GameRef { get; private set; }
 
         public EntityState(EntityGame eg)
         {
@@ -22,7 +21,6 @@ namespace EntityEngine.Engine
 
         public virtual void Start()
         {
-
         }
 
         public virtual void Reset()
@@ -68,4 +66,3 @@ namespace EntityEngine.Engine
         }
     }
 }
-

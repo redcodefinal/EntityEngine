@@ -14,12 +14,10 @@ namespace EntityEngine.Components
 
         public virtual void Update()
         {
-            
         }
 
         public virtual void Draw(SpriteBatch sb)
         {
-            
         }
     }
 }

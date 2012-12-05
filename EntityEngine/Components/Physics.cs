@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EntityEngine.Engine;
 using Microsoft.Xna.Framework;
 
@@ -12,7 +9,9 @@ namespace EntityEngine.Components
         public float AngularVelocity;
         public Vector2 Velocity = Vector2.Zero;
         public float Drag = 1f;
-        public Physics(Entity e) : base(e)
+
+        public Physics(Entity e)
+            : base(e)
         {
         }
 

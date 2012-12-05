@@ -28,7 +28,7 @@
         {
             if (Down())
             {
-                HoldTime += InputHandler.gametime.ElapsedGameTime.Milliseconds;
+                HoldTime += InputHandler.Gametime.ElapsedGameTime.Milliseconds;
 
                 if (HoldTime > milliseconds)
                 {

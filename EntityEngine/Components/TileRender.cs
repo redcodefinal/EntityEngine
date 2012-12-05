@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntityEngine.Engine;
+﻿using EntityEngine.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -11,36 +7,43 @@ namespace EntityEngine.Components
     public class TileRender : Render
     {
         public Vector2 TileSize { get; private set; }
+
         public TileEntity TileEntity { get; private set; }
+
         public int Columns { get { return (int)(Texture.Width / TileSize.X); } }
+
         public int Rows { get { return (int)(Texture.Height / TileSize.Y); } }
+
         public override Vector2 Origin { get { return new Vector2(DrawRect.Width / 2.0f, DrawRect.Height / 2.0f); } }
+
         public override Rectangle DrawRect
         {
             get
             {
-                return new Rectangle((int)(Entity.Body.Position.X),(int) (Entity.Body.Position.Y), (int)(TileSize.X * Scale), (int)(TileSize.Y * Scale));
+                return new Rectangle((int)(Entity.Body.Position.X), (int)(Entity.Body.Position.Y), (int)(TileSize.X * Scale), (int)(TileSize.Y * Scale));
             }
         }
+
         public Rectangle SourceRectangle
         {
             get
             {
-                Rectangle r = new Rectangle();
+                var r = new Rectangle();
                 for (var i = 0; i <= TileEntity.Index; i += Columns)
                 {
                     var ypos = TileEntity.Index - i;
 
                     if (ypos >= Columns) continue;
 
-                    var p = new Point {Y = (i/Columns)*(int) TileSize.Y, X = ypos*(int) TileSize.X};
-                    r = new Rectangle(p.X, p.Y, (int) TileSize.X, (int) TileSize.Y);
+                    var p = new Point { Y = (i / Columns) * (int)TileSize.Y, X = ypos * (int)TileSize.X };
+                    r = new Rectangle(p.X, p.Y, (int)TileSize.X, (int)TileSize.Y);
                 }
                 return r;
             }
         }
 
-        public TileRender(TileEntity e, Texture2D texture, Vector2 tilesize) : base(e, texture)
+        public TileRender(TileEntity e, Texture2D texture, Vector2 tilesize)
+            : base(e, texture)
         {
             TileSize = tilesize;
             TileEntity = e;

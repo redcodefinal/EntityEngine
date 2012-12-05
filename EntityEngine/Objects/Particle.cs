@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntityEngine.Components;
+﻿using EntityEngine.Components;
 using EntityEngine.Engine;
 using Microsoft.Xna.Framework;
 
@@ -11,8 +7,11 @@ namespace EntityEngine.Objects
     public class Particle : TileEntity
     {
         public int TimeToLive { get; set; }
+
         public int MaxTimeToLive { get; private set; }
-        public Particle(int index, Vector2 position, int ttl, Emitter e) : base(e.Entity.StateRef)
+
+        public Particle(int index, Vector2 position, int ttl, Emitter e)
+            : base(e.Entity.StateRef)
         {
             Index = index;
             Body = new Body(this, position, e.TileSize);
@@ -31,7 +30,7 @@ namespace EntityEngine.Objects
             base.Update();
 
             TimeToLive--;
-            if(TimeToLive <= 0)
+            if (TimeToLive <= 0)
                 Destroy();
         }
     }
@@ -39,6 +38,7 @@ namespace EntityEngine.Objects
     public class FadeParticle : Particle
     {
         public int FadeAge;
+
         public FadeParticle(int index, Vector2 position, int fadeage, Emitter e)
             : base(index, position, fadeage, e)
         {

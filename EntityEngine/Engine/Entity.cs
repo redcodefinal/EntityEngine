@@ -13,13 +13,20 @@ namespace EntityEngine.Engine
         public EventHandler DestroyEvent;
 
         public Body Body { get; protected set; }
+
         public Render Render { get; protected set; }
+
         public Physics Physics { get; protected set; }
+
         public Health Health { get; protected set; }
+
         public EntityState StateRef { get; private set; }
+
         public List<Entity> Targets { get; set; }
+
         public List<Entity> Group { get; set; }
-        public List<Component> Components { get; protected set; } 
+
+        public List<Component> Components { get; protected set; }
 
         public Entity(EntityState es)
         {
@@ -45,12 +52,11 @@ namespace EntityEngine.Engine
 
             foreach (var entity in Group)
                 entity.Group.Remove(this);
-            
         }
 
         virtual public void Update()
         {
-            foreach (var component in Components.Where(component => component!= null))
+            foreach (var component in Components.Where(component => component != null))
             {
                 component.Update();
             }

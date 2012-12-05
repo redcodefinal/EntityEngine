@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntityEngine.Input;
+﻿using EntityEngine.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -16,23 +12,23 @@ namespace EntityEngine.Engine
 
         public event EntityGameEventHandler StateChange;
 
-
         public Rectangle Viewport { get; private set; }
+
         public Game Game;
         public SpriteBatch SpriteBatch;
 
         private EntityState _currentstate;
+
         public EntityState CurrentState
         {
             get { return _currentstate; }
-            set 
-            { 
+            set
+            {
                 _currentstate = value;
                 if (StateChange != null)
                     StateChange(_currentstate);
             }
         }
-
 
         public EntityGame(Game game, GraphicsDeviceManager g, Rectangle viewport, SpriteBatch spriteBatch)
         {
@@ -42,7 +38,7 @@ namespace EntityEngine.Engine
             game.Components.Add(new InputHandler(game));
 
             Paused = false;
-            
+
             Viewport = viewport;
             MakeWindow(g);
         }
