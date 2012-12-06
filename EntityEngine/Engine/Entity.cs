@@ -20,18 +20,14 @@ namespace EntityEngine.Engine
 
         public Health Health { get; protected set; }
 
+        public Collision Collision { get; protected set; }
+
         public EntityState StateRef { get; private set; }
-
-        public List<Entity> Targets { get; set; }
-
-        public List<Entity> Group { get; set; }
 
         public List<Component> Components { get; protected set; }
 
         public Entity(EntityState es)
         {
-            Targets = new List<Entity>();
-            Group = new List<Entity>();
             Components = new List<Component>();
             StateRef = es;
         }
@@ -46,12 +42,6 @@ namespace EntityEngine.Engine
         {
             if (DestroyEvent != null)
                 DestroyEvent(this);
-
-            foreach (var target in Targets)
-                target.Targets.Remove(this);
-
-            foreach (var entity in Group)
-                entity.Group.Remove(this);
         }
 
         virtual public void Update()

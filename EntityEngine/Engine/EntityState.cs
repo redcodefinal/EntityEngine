@@ -19,7 +19,7 @@ namespace EntityEngine.Engine
             NewEntities = new List<Entity>();
         }
 
-        public virtual void Start()
+        public void Start()
         {
         }
 
@@ -45,7 +45,7 @@ namespace EntityEngine.Engine
                 e.Draw(sb);
         }
 
-        public virtual void AddEntity(Entity entity)
+        public void AddEntity(Entity entity)
         {
             //Subscribe to the destory event
             entity.DestroyEvent += RemoveEntity;
@@ -54,7 +54,7 @@ namespace EntityEngine.Engine
             NewEntities.Add(entity);
         }
 
-        public virtual void RemoveEntity(Entity entity)
+        public void RemoveEntity(Entity entity)
         {
             //Unsubscribe from the destroy event
             NewEntities.Remove(entity);

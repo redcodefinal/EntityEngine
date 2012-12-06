@@ -25,15 +25,5 @@ namespace EntityEngine.Components
             Position = position;
             Bounds = bounds;
         }
-
-        public bool TestCollision(Entity entity)
-        {
-            //Distance Formula
-            var dotproduct = Math.Abs(
-                Math.Sqrt(
-                Math.Pow(Position.X - entity.Body.Position.X, 2) +
-                Math.Pow(Position.Y - entity.Body.Position.Y, 2)));
-            return (dotproduct <= Bounds.X / 2 + entity.Body.Bounds.X / 2);
-        }
     }
 }

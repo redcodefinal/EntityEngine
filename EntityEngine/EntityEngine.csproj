@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Body.cs" />
+    <Compile Include="Components\Collision.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\Health.cs" />
     <Compile Include="Components\Physics.cs" />

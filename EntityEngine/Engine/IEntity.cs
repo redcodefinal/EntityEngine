@@ -14,9 +14,7 @@ namespace EntityEngine.Engine
 
         Health Health { get; }
 
-        List<Entity> Targets { get; set; }
-
-        List<Entity> Group { get; set; }
+        Collision Collision { get; }
 
         EntityState StateRef { get; }
 

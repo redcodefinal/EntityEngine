@@ -60,7 +60,9 @@ namespace EntityEngine.Engine
 
         public virtual void Draw()
         {
+            SpriteBatch.Begin();
             CurrentState.Draw(SpriteBatch);
+            SpriteBatch.End();
         }
 
         public virtual void Pause()
