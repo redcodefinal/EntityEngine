@@ -8,7 +8,7 @@ namespace EntityEngine.Components
         Entity Entity { get; }
 
         void Update();
-
         void Draw(SpriteBatch sb);
+        void Destroy();
     }
 }

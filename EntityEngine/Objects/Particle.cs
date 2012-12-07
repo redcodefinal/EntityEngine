@@ -7,8 +7,8 @@ namespace EntityEngine.Objects
     public class Particle : TileEntity
     {
         public int TimeToLive { get; set; }
-
         public int MaxTimeToLive { get; private set; }
+        public Emitter Emitter;
 
         public Particle(int index, Vector2 position, int ttl, Emitter e)
             : base(e.Entity.StateRef)
@@ -21,6 +21,7 @@ namespace EntityEngine.Objects
             Physics = new Physics(this);
             Components.Add(Physics);
 
+            Emitter = e;
             TimeToLive = ttl;
             MaxTimeToLive = TimeToLive;
         }

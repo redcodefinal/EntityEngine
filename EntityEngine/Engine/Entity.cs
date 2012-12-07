@@ -42,6 +42,10 @@ namespace EntityEngine.Engine
         {
             if (DestroyEvent != null)
                 DestroyEvent(this);
+            foreach (var component in Components)
+            {
+                component.Destroy();
+            }
         }
 
         virtual public void Update()

@@ -7,16 +7,17 @@ namespace EntityEngine.Engine
     public class EntityState
     {
         public List<Entity> Entities { get; protected set; }
-
         public List<Entity> NewEntities { get; protected set; }
-
         public EntityGame GameRef { get; private set; }
+
+        public event Entity.EventHandler EntityRemoved;
+        public event Entity.EventHandler EntityAdded;
 
         public EntityState(EntityGame eg)
         {
             GameRef = eg;
-            Entities = new List<Entity>();
             NewEntities = new List<Entity>();
+            Entities = NewEntities;
         }
 
         public void Start()
@@ -27,7 +28,6 @@ namespace EntityEngine.Engine
         {
             Entities = new List<Entity>();
             NewEntities = new List<Entity>();
-            Start();
         }
 
         public virtual void Update()
@@ -50,14 +50,17 @@ namespace EntityEngine.Engine
             //Subscribe to the destory event
             entity.DestroyEvent += RemoveEntity;
             entity.CreateEvent += AddEntity;
-
             NewEntities.Add(entity);
+            if (EntityAdded != null)
+                EntityAdded(entity);
         }
 
         public void RemoveEntity(Entity entity)
         {
             //Unsubscribe from the destroy event
             NewEntities.Remove(entity);
+            if (EntityRemoved != null)
+                EntityRemoved(entity);
         }
 
         public virtual void Show()

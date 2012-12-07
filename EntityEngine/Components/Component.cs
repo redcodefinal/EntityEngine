@@ -19,5 +19,9 @@ namespace EntityEngine.Components
         public virtual void Draw(SpriteBatch sb)
         {
         }
+
+        public virtual void Destroy()
+        {
+        }
     }
 }
