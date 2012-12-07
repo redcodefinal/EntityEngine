@@ -11,8 +11,6 @@ namespace EntityEngine.Components
 
         public Color Color = Color.White;
 
-        public Color[] ColorData { get; protected set; }
-
         public float Alpha = 1f;
         public float Scale = 1f;
 
@@ -24,13 +22,10 @@ namespace EntityEngine.Components
             : base(e)
         {
             Texture = texture;
-            ColorData = new Color[texture.Width * texture.Height];
-            texture.GetData(ColorData);
         }
 
         public override void Draw(SpriteBatch sb)
         {
-            if (this == null || Texture == null || Entity.Body == null) throw new NullReferenceException();
             sb.Draw(Texture, DrawRect, null, Color * Alpha, Entity.Body.Angle,
                 Origin, SpriteEffects.None, 0f);
         }

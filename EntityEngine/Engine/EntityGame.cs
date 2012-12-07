@@ -14,9 +14,9 @@ namespace EntityEngine.Engine
 
         public Rectangle Viewport { get; private set; }
 
-        public Game Game;
-        public SpriteBatch SpriteBatch;
-
+        public Game Game{ get; private set; }
+        public SpriteBatch SpriteBatch{ get; private set; }
+        public GameTime GameTime { get; private set; }
         private EntityState _currentstate;
 
         public EntityState CurrentState
@@ -53,8 +53,9 @@ namespace EntityEngine.Engine
             g.ApplyChanges();
         }
 
-        public virtual void Update()
+        public virtual void Update(GameTime gt)
         {
+            GameTime = gt;
             CurrentState.Update();
         }
 
