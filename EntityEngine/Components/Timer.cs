@@ -103,6 +103,8 @@ namespace EntityEngine.Components
 
 		public void Start()
 		{
+            if(Alive) return;
+
 			Alive = true;
             TickTime = 0;
             _lastseconds = Entity.StateRef.GameRef.GameTime.TotalGameTime.TotalMilliseconds;

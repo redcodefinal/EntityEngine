@@ -18,6 +18,7 @@ namespace EntityEngine.Engine
         public SpriteBatch SpriteBatch{ get; private set; }
         public GameTime GameTime { get; private set; }
         private EntityState _currentstate;
+        public Color BGColor = Color.White;
 
         public EntityState CurrentState
         {
@@ -61,7 +62,9 @@ namespace EntityEngine.Engine
 
         public virtual void Draw()
         {
-            SpriteBatch.Begin();
+            Game.GraphicsDevice.Clear(BGColor);
+            SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp,
+                              DepthStencilState.None, RasterizerState.CullCounterClockwise);
             CurrentState.Draw(SpriteBatch);
             SpriteBatch.End();
         }
@@ -74,6 +77,10 @@ namespace EntityEngine.Engine
         public virtual void Unpause()
         {
             Paused = false;
+        }
+
+        public void ChangeState(string tag)
+        {
         }
     }
 }

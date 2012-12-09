@@ -4,20 +4,27 @@ using Microsoft.Xna.Framework;
 
 namespace EntityEngine.Objects
 {
-    public class Particle : TileEntity
+    public class Particle : Entity
     {
         public int TimeToLive { get; set; }
         public int MaxTimeToLive { get; private set; }
         public Emitter Emitter;
+        private TileRender _tr;
+        public int Index
+        {
+            get { return _tr.Index; }
+            set { _tr.Index = value; }
+        }
 
         public Particle(int index, Vector2 position, int ttl, Emitter e)
             : base(e.Entity.StateRef)
         {
-            Index = index;
+            
             Body = new Body(this, position, e.TileSize);
             Components.Add(Body);
             Render = new TileRender(this, e.Texture, e.TileSize);
             Components.Add(Render);
+            Index = index;
             Physics = new Physics(this);
             Components.Add(Physics);
 

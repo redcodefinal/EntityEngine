@@ -14,6 +14,11 @@ namespace EntityEngine.Components
         public Dictionary<string, Animation> Animations;
         public Animation CurrentAnimation;
 
+        public override Rectangle DrawRect
+        {
+            get { return CurrentAnimation.DrawRect; }
+        }
+
         public AnimationRender(Entity e) : base(e, null)
         {
             Animations =  new Dictionary<string, Animation>();
@@ -41,12 +46,14 @@ namespace EntityEngine.Components
 
         public void ShowAnimation(Animation a)
         {
-            CurrentAnimation = Animations[a.Key];
+            if (CurrentAnimation == null || CurrentAnimation.Key != a.Key)
+                CurrentAnimation = Animations[a.Key];
         }
 
         public void ShowAnimation(string key)
         {
-            CurrentAnimation = Animations[key];
+            if (CurrentAnimation == null || CurrentAnimation.Key != key)
+                CurrentAnimation = Animations[key];
         }
     }
 }

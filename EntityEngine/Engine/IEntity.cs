@@ -12,9 +12,9 @@ namespace EntityEngine.Engine
 
         Physics Physics { get; }
 
-        Health Health { get; }
-
         Collision Collision { get; }
+
+        Health Health { get; }
 
         EntityState StateRef { get; }
 

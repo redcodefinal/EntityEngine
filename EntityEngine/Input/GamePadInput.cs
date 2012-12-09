@@ -51,5 +51,10 @@ namespace EntityEngine.Input
         {
             return InputHandler.ButtonDown(Button, PlayerIndex);
         }
+
+        public override bool Up()
+        {
+            return InputHandler.ButtonUp(Button, PlayerIndex);
+        }
     }
 }

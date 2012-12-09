@@ -6,18 +6,24 @@ namespace EntityEngine.Engine
 {
     public class EntityState
     {
+        public delegate void EventHandler(string tag);
+
         public List<Entity> Entities { get; protected set; }
         public List<Entity> NewEntities { get; protected set; }
         public EntityGame GameRef { get; private set; }
+        public string Tag;
+
+        public event EventHandler ChangeState;
 
         public event Entity.EventHandler EntityRemoved;
         public event Entity.EventHandler EntityAdded;
 
-        public EntityState(EntityGame eg)
+        public EntityState(EntityGame eg, string tag)
         {
             GameRef = eg;
             NewEntities = new List<Entity>();
             Entities = NewEntities;
+            Tag = tag;
         }
 
         public void Start()
@@ -63,9 +69,23 @@ namespace EntityEngine.Engine
                 EntityRemoved(entity);
         }
 
-        public virtual void Show()
+        public void Show()
         {
-            GameRef.CurrentState = this;
+            Show(Tag);
+        }
+
+        public virtual void Show(string tag)
+        {
+            if(tag == Tag)
+                GameRef.CurrentState = this;
+        }
+
+        public virtual void ChangeToState(string tag)
+        {
+            if (ChangeState != null)
+            {
+                ChangeState(tag);
+            }
         }
     }
 }

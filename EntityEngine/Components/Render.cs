@@ -13,11 +13,12 @@ namespace EntityEngine.Components
 
         public float Alpha = 1f;
         public float Scale = 1f;
+        public float Layer;
 
         public virtual Vector2 Origin { get { return new Vector2(Texture.Width / 2.0f, Texture.Height / 2.0f); } }
 
-        public virtual Rectangle DrawRect { get { return Entity.Body.BoundingBox; } }
-
+        public virtual Rectangle DrawRect { get { return new Rectangle((int)(Entity.Body.BoundingBox.X + Origin.X*Scale), (int)(Entity.Body.BoundingBox.Y + Origin.Y * Scale), Entity.Body.BoundingBox.Width, Entity.Body.BoundingBox.Height); } }
+        
         public Render(Entity e, Texture2D texture)
             : base(e)
         {
@@ -27,7 +28,7 @@ namespace EntityEngine.Components
         public override void Draw(SpriteBatch sb)
         {
             sb.Draw(Texture, DrawRect, null, Color * Alpha, Entity.Body.Angle,
-                Origin, SpriteEffects.None, 0f);
+                Origin, SpriteEffects.None, Layer);
         }
     }
 }

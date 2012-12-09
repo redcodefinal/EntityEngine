@@ -97,7 +97,10 @@ namespace EntityEngine.Input
         #endregion General Method Region
 
         #region Keyboard Region
-
+        public static bool KeyUp(Keys key)
+        {
+            return _keyboardState.IsKeyUp(key);
+        }
         public static bool KeyReleased(Keys key)
         {
             return _keyboardState.IsKeyUp(key) &&
@@ -118,6 +121,10 @@ namespace EntityEngine.Input
         #endregion Keyboard Region
 
         #region Game Pad Region
+        public static bool ButtonUp(Buttons button, PlayerIndex index)
+        {
+            return _gamePadStates[(int) index].IsButtonUp(button);
+        }
 
         public static bool ButtonReleased(Buttons button, PlayerIndex index)
         {

@@ -19,6 +19,11 @@
             return false;
         }
 
+        public virtual bool Up()
+        {
+            return false;
+        }
+
         /// <summary>
         /// Will return true if the button is down and a certian amount of time has passed
         /// </summary>
@@ -26,6 +31,15 @@
         /// <returns></returns>
         public virtual bool RapidFire(int milliseconds)
         {
+            if (Pressed())
+            {
+                if (HoldTime == 0)
+                {
+                    HoldTime = 1;
+                    return true;
+                }
+            }
+
             if (Down())
             {
                 HoldTime += InputHandler.Gametime.ElapsedGameTime.Milliseconds;
@@ -36,14 +50,17 @@
                     return true;
                 }
             }
-            if (Pressed())
-            {
-                return true;
-            }
 
-            if (Released())
+            if (Up())
             {
-                HoldTime = 0;
+                if(HoldTime != 0)
+                {
+                    HoldTime += InputHandler.Gametime.ElapsedGameTime.Milliseconds;
+                    if (HoldTime > milliseconds)
+                    {
+                        HoldTime = 0;
+                    }
+                }
             }
             return false;
         }

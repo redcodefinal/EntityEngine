@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EntityEngine.Components;
+using EntityEngine.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace EntityEngine.Data
 {
-    public class Animation
+    public class Animation : Render
     {
-        public Texture2D Texture;
         public Vector2 TileSize;
         public int FramesPerSecond;
         public int CurrentFrame { get; set; }
         public string Key;
+        public event Timer.TimerEvent LastFrameEvent;
 
         public AnimationRender AnimationRender;
         public Timer FrameTimer;
+
+        public bool HitLastFrame
+        {
+            get { return (CurrentFrame >= Tiles-1); }
+        }
 
         public int Tiles
         {
@@ -37,37 +43,44 @@ namespace EntityEngine.Data
             }
         }
 
-        public Rectangle DrawRect
+        public override Rectangle DrawRect
         {
             get
             {
-                return new Rectangle((int) AnimationRender.Entity.Body.Position.X, (int) AnimationRender.Entity.Body.Position.Y, (int) TileSize.X, (int) TileSize.Y);
+                return new Rectangle((int) Entity.Body.Position.X, (int) Entity.Body.Position.Y, (int)(TileSize.X * Scale), (int) (TileSize.Y * Scale));
             }
         }
 
-        public Animation(AnimationRender ar, Texture2D texture, Vector2 tileSize, int framesPerSecond, string key)
+        public override Vector2 Origin
         {
-            AnimationRender = ar;
-            Texture = texture;
+            get { return new Vector2(TileSize.X/2.0f, TileSize.Y/2.0f); }
+        }
+
+        public Animation(Entity e, Texture2D texture, Vector2 tileSize, int framesPerSecond, string key) : base(e, texture)
+        {
             TileSize = tileSize;
             FramesPerSecond = framesPerSecond;
             Key = key;
 
-            FrameTimer = new Timer(AnimationRender.Entity);
+            FrameTimer = new Timer(e);
             FrameTimer.Milliseconds = MillisecondsPerFrame;
-            FrameTimer.Start();
             FrameTimer.LastEvent += AdvanceNextFrame;
         }
 
-        public void Update()
+        public override void Update()
         {
             FrameTimer.Update();
+            if (HitLastFrame)
+            {
+                if (LastFrameEvent != null)
+                    LastFrameEvent();
+            }
         }
 
-        public void Draw(SpriteBatch sb)
+        public override void Draw(SpriteBatch sb)
         {
-            sb.Draw(Texture, DrawRect, CurrentFrameRect, AnimationRender.Color, AnimationRender.Entity.Body.Angle,
-                    new Vector2(DrawRect.Width/2f, DrawRect.Height/2f), SpriteEffects.None, 0f);
+            sb.Draw(Texture, DrawRect, CurrentFrameRect, Color * Alpha, Entity.Body.Angle,
+                    Origin, SpriteEffects.None, Layer);
         }
 
         public void AdvanceNextFrame()
@@ -75,6 +88,22 @@ namespace EntityEngine.Data
             CurrentFrame++;
             if (CurrentFrame >= Tiles)
                 CurrentFrame = 0;
+        }
+        public void AdvanceLastFrame()
+        {
+            CurrentFrame--;
+            if (CurrentFrame < 0)
+                CurrentFrame = Tiles;
+        }
+
+        public void Start()
+        {
+            FrameTimer.Start();
+        }
+
+        public void Stop()
+        {
+            FrameTimer.Stop();
         }
     }
 }

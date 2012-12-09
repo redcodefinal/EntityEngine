@@ -98,6 +98,7 @@
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\Health.cs" />
     <Compile Include="Components\Physics.cs" />
+    <Compile Include="Components\TextRender.cs" />
     <Compile Include="Components\TileRender.cs" />
     <Compile Include="Data\Animation.cs" />
     <Compile Include="Engine\Entity.cs" />
@@ -105,7 +106,9 @@
     <Compile Include="Engine\EntityGame.cs" />
     <Compile Include="Engine\EntityState.cs" />
     <Compile Include="Engine\IEntity.cs" />
-    <Compile Include="Engine\TileEntity.cs" />
+    <Compile Include="GUI\Image.cs" />
+    <Compile Include="GUI\Text.cs" />
+    <Compile Include="Input\DoubleInput.cs" />
     <Compile Include="Input\GamePadInput.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="Input\InputHandler.cs" />

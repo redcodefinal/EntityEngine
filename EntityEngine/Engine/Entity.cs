@@ -24,11 +24,11 @@ namespace EntityEngine.Engine
 
         public EntityState StateRef { get; private set; }
 
-        public List<Component> Components { get; protected set; }
+        public List<IComponent> Components { get; protected set; }
 
         public Entity(EntityState es)
         {
-            Components = new List<Component>();
+            Components = new List<IComponent>();
             StateRef = es;
         }
 

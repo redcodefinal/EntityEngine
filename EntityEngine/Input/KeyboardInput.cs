@@ -39,5 +39,10 @@ namespace EntityEngine.Input
         {
             return InputHandler.KeyDown(Key);
         }
+
+        public override bool Up()
+        {
+            return InputHandler.KeyUp(Key);
+        }
     }
 }
