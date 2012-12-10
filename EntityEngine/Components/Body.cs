@@ -8,15 +8,26 @@ namespace EntityEngine.Components
     {
         public Vector2 Position;
         public Vector2 Bounds;
+
         public float Angle;
 
         public Rectangle BoundingBox
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y,
-                    (int)(Bounds.X * Entity.Render.Scale), (int)(Bounds.Y * Entity.Render.Scale));
+                if(Entity.Render != null)
+                {
+                    return new Rectangle((int)Position.X, (int)Position.Y,
+                                         Entity.Render.DrawRect.Width, Entity.Render.DrawRect.Height);
+                }
+                return new Rectangle((int) Position.X, (int) Position.Y, (int) Bounds.X, (int) Bounds.Y);
             }
+        }
+
+        public Body(Entity e, Vector2 position)
+            : base(e)
+        {
+            Position = position;
         }
 
         public Body(Entity e, Vector2 position, Vector2 bounds)

@@ -17,8 +17,11 @@ namespace EntityEngine.Components
         public float Layer;
         public float Alpha = 1f;
         public float Scale = 1f;
+        public SpriteEffects Flip = SpriteEffects.None;
+
         public virtual Vector2 Origin
         {
+            //TODO Implement origin!
             get { return Vector2.Zero; }
         }
 
@@ -35,7 +38,7 @@ namespace EntityEngine.Components
 
         public void Draw(SpriteBatch sb)
         {
-            sb.DrawString(Font, Text, Entity.Body.Position, Color * Alpha, Entity.Body.Angle,Origin, Scale, SpriteEffects.None, Layer);
+            sb.DrawString(Font, Text, Entity.Body.Position, Color * Alpha, Entity.Body.Angle,Origin, Scale, Flip, Layer);
         }
 
         public void Destroy()

@@ -50,7 +50,7 @@ namespace EntityEngine.Components
 
         public override void Draw(SpriteBatch sb)
         {
-            sb.Draw(Texture, DrawRect, SourceRectangle, Color * Alpha, Entity.Body.Angle, Origin, SpriteEffects.None, Layer);
+            sb.Draw(Texture, DrawRect, SourceRectangle, Color * Alpha, Entity.Body.Angle, Origin, Flip, Layer);
         }
     }
 }

@@ -101,6 +101,7 @@
     <Compile Include="Components\TextRender.cs" />
     <Compile Include="Components\TileRender.cs" />
     <Compile Include="Data\Animation.cs" />
+    <Compile Include="Data\RandomExtentions.cs" />
     <Compile Include="Engine\Entity.cs" />
     <Compile Include="Components\IComponent.cs" />
     <Compile Include="Engine\EntityGame.cs" />

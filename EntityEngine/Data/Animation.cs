@@ -47,7 +47,7 @@ namespace EntityEngine.Data
         {
             get
             {
-                return new Rectangle((int) Entity.Body.Position.X, (int) Entity.Body.Position.Y, (int)(TileSize.X * Scale), (int) (TileSize.Y * Scale));
+                return new Rectangle((int)(Entity.Body.Position.X + Origin.X * Scale), (int)(Entity.Body.Position.Y + Origin.Y * Scale), (int)(TileSize.X * Scale), (int)(TileSize.Y * Scale));
             }
         }
 
@@ -80,7 +80,7 @@ namespace EntityEngine.Data
         public override void Draw(SpriteBatch sb)
         {
             sb.Draw(Texture, DrawRect, CurrentFrameRect, Color * Alpha, Entity.Body.Angle,
-                    Origin, SpriteEffects.None, Layer);
+                    Origin, Flip, Layer);
         }
 
         public void AdvanceNextFrame()

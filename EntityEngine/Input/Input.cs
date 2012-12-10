@@ -51,7 +51,7 @@
                 }
             }
 
-            if (Up())
+            else if (Up())
             {
                 if(HoldTime != 0)
                 {

@@ -9,12 +9,14 @@ namespace EntityEngine.Components
     public class Collision : Component
     {
         public List<Entity> Partners = new List<Entity>();
-        protected  List<Entity> NewPartners = new List<Entity>(); 
+        public List<Entity> NewPartners = new List<Entity>(); 
         public List<Entity> CollidedWith = new List<Entity>();
+
         public bool Colliding
         {
             get { return (CollidedWith.Count > 0); }
         }
+
         public event Entity.EventHandler CollideEvent;
 
         public Collision(Entity e) : base(e)

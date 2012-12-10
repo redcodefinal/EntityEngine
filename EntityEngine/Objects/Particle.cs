@@ -22,9 +22,12 @@ namespace EntityEngine.Objects
             
             Body = new Body(this, position, e.TileSize);
             Components.Add(Body);
-            Render = new TileRender(this, e.Texture, e.TileSize);
+
+            _tr = new TileRender(this, e.Texture, e.TileSize);
+            Render = _tr;
             Components.Add(Render);
             Index = index;
+
             Physics = new Physics(this);
             Components.Add(Physics);
 
@@ -47,8 +50,8 @@ namespace EntityEngine.Objects
     {
         public int FadeAge;
 
-        public FadeParticle(int index, Vector2 position, int fadeage, Emitter e)
-            : base(index, position, fadeage, e)
+        public FadeParticle(int index, Vector2 position, int fadeage, int ttl, Emitter e)
+            : base(index, position, ttl, e)
         {
             FadeAge = fadeage;
         }
