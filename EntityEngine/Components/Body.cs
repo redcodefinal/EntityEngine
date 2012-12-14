@@ -11,7 +11,7 @@ namespace EntityEngine.Components
 
         public float Angle;
 
-        public Rectangle BoundingBox
+        public virtual Rectangle BoundingBox
         {
             get
             {

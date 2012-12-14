@@ -51,7 +51,7 @@ namespace EntityEngine.Engine
                 e.Draw(sb);
         }
 
-        public void AddEntity(Entity entity)
+        public virtual void AddEntity(Entity entity)
         {
             //Subscribe to the destory event
             entity.DestroyEvent += RemoveEntity;
@@ -61,7 +61,7 @@ namespace EntityEngine.Engine
                 EntityAdded(entity);
         }
 
-        public void RemoveEntity(Entity entity)
+        public virtual void RemoveEntity(Entity entity)
         {
             //Unsubscribe from the destroy event
             NewEntities.Remove(entity);

@@ -10,7 +10,7 @@ namespace EntityEngine.Components
             HitPoints = hp;
         }
 
-        public int HitPoints { get; set; }
+        public float HitPoints { get; set; }
 
         public bool Alive
         {
@@ -21,7 +21,7 @@ namespace EntityEngine.Components
 
         public event Entity.EventHandler DiedEvent;
 
-        public void Hurt(int points)
+        public void Hurt(float points)
         {
             if (!Alive) return;
 

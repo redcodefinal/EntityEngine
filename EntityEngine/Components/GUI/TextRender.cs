@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntityEngine.Engine;
+﻿using EntityEngine.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace EntityEngine.Components
+namespace EntityEngine.Components.GUI
 {
     public class TextRender : IComponent
     {
@@ -18,7 +14,13 @@ namespace EntityEngine.Components
         public float Alpha = 1f;
         public float Scale = 1f;
         public SpriteEffects Flip = SpriteEffects.None;
-
+        public Rectangle DrawRectangle
+        {
+            get
+            {
+                return new Rectangle((int)Entity.Body.Position.X, (int)Entity.Body.Position.Y, (int)Font.MeasureString(Text).X, (int)Font.MeasureString(Text).Y);
+            }
+        }
         public virtual Vector2 Origin
         {
             //TODO Implement origin!

@@ -28,8 +28,8 @@ namespace EntityEngine.Engine
 
         public Entity(EntityState es)
         {
-            Components = new List<IComponent>();
             StateRef = es;
+            Components = new List<IComponent>();
         }
 
         virtual public void AddEntity(Entity e)

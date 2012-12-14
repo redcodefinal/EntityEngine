@@ -33,5 +33,10 @@ namespace EntityEngine.Components
             Velocity.X += (float)Math.Sin(-angle) * -power;
             Velocity.Y += (float)Math.Cos(-angle) * -power;
         }
+
+        public void FaceVelocity()
+        {
+            Entity.Body.Angle = (float)Math.Atan2(Velocity.X, Velocity.Y);
+        }
     }
 }

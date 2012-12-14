@@ -8,9 +8,7 @@ namespace EntityEngine.Components
     public class Render : Component
     {
         public Texture2D Texture { get; private set; }
-
         public Color Color = Color.White;
-
         public float Alpha = 1f;
         public float Scale = 1f;
         public float Layer;

@@ -18,6 +18,8 @@ namespace EntityEngine.Engine
 
         EntityState StateRef { get; }
 
+        List<IComponent> Components { get; } 
+
         void AddEntity(Entity e);
 
         void Destroy(Entity e = null);

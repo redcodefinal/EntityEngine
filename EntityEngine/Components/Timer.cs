@@ -38,9 +38,10 @@ namespace EntityEngine.Components
 
 		public double Milliseconds { get; set; }
 
+	    public bool _tr;
 	    public bool TimeReached
 	    {
-	        get { return (Alive && TickTime >= Milliseconds); }
+            get { return _tr; }
 	    }
 
 		/// <summary>
@@ -66,8 +67,9 @@ namespace EntityEngine.Components
 		{
 			TickTime = Entity.StateRef.GameRef.GameTime.TotalGameTime.TotalMilliseconds - _lastseconds;
 			OnTick();
-			if (TimeReached)
+			if (Alive && TickTime >= Milliseconds)
 			{
+			    _tr = true;
 				OnLast();
 			    Reset();
 			}
@@ -75,6 +77,7 @@ namespace EntityEngine.Components
 
 		public override void Update()
 		{
+		    _tr = false;
             if(Alive)
 		        Tick();
 		}
