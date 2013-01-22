@@ -36,9 +36,9 @@ namespace EntityEngine.Components
 		/// </summary>
 		public double TickTime { get; protected set; }
 
-		public double Milliseconds { get; set; }
+		public int Milliseconds { get; set; }
 
-	    public bool _tr;
+	    private bool _tr;
 	    public bool TimeReached
 	    {
             get { return _tr; }
@@ -124,6 +124,17 @@ namespace EntityEngine.Components
             TickTime = 0;
             _lastseconds = Entity.StateRef.GameRef.GameTime.TotalGameTime.TotalMilliseconds;
 		}
-		
+
+        public override void ParseXml(XmlParser xmlparser, string nodename)
+        {
+            string rootnode = xmlparser.GetRootNode();
+            rootnode = rootnode + "->" + nodename + "->";
+
+            Milliseconds = xmlparser.GetInt(rootnode + "Milliseconds");
+            if (xmlparser.GetBool(rootnode + "StartAfterCreation"))
+            {
+                Start();
+            }
+        }
 	}
 }

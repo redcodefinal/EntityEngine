@@ -8,7 +8,6 @@ namespace EntityEngine.Components
     {
         public Vector2 Position;
         public Vector2 Bounds;
-
         public float Angle;
 
         public virtual Rectangle BoundingBox
@@ -24,10 +23,9 @@ namespace EntityEngine.Components
             }
         }
 
-        public Body(Entity e, Vector2 position)
+        public Body(Entity e)
             : base(e)
         {
-            Position = position;
         }
 
         public Body(Entity e, Vector2 position, Vector2 bounds)
@@ -35,6 +33,24 @@ namespace EntityEngine.Components
         {
             Position = position;
             Bounds = bounds;
+        }
+
+        public override void ParseXml(XmlParser xmlparser, string nodename)
+        {
+            string rootnode = xmlparser.GetRootNode();
+            rootnode = rootnode + "->"+nodename+"->";
+            try
+            {
+                Position = xmlparser.GetVector2(rootnode + "Position");
+            }
+            catch{}
+
+            try
+            {
+                Angle = xmlparser.GetFloat(rootnode + "Angle");
+            }
+            catch{}
+            
         }
     }
 }

@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EntityEngine.Components.AnimationRender" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAABAAgAAAAAAAAAQQAAACAAAAAAAAAAAACA=</HashCode>
+      <FileName>Components\AnimationRender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.Body" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAQAAAAACAAAAAAAEAAAAAAAgA=</HashCode>
+      <FileName>Components\Body.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.Collision" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEQAAAAAAAAAAAAAAAAAAAAAAAFQAAUAAAgAAAAAgAA=</HashCode>
+      <FileName>Components\Collision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.Component" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAAAAAAgAAAAAQAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Component.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EntityEngine.Components.Health" Collapsed="true">
+    <Position X="19.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAQBAAAACAAAAQAAAAAAAAAgAA=</HashCode>
+      <FileName>Components\Health.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.Physics" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAIAAAEAAAAQAAABAAAAAAAAQAAAAAAEAAA=</HashCode>
+      <FileName>Components\Physics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.Render" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAgAAAAIQAAEAQAAAABAEAAIAgAgAAAA=</HashCode>
+      <FileName>Components\Render.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.Sound" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIgAAAAgAAAAAQAAAIAAQAAAAAoAJgAAAAAAA=</HashCode>
+      <FileName>Components\Sound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.TileRender" Collapsed="true">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkEAAAAAAAAAQAAABAAAAAEAAAgAAAA=</HashCode>
+      <FileName>Components\TileRender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.Timer" Collapsed="true">
+    <Position X="21.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQgAAAACCCABAAgAAAQAAAAAgAACAQAIAAAAQQAQCA=</HashCode>
+      <FileName>Components\Timer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.XmlParser" Collapsed="true">
+    <Position X="19.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAQIAAAAAAABAAAAAAABACAAAAAAAiAEAA=</HashCode>
+      <FileName>Components\XmlParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Components.GUI.TextRender" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAQAAAAAgAAAAIQAAEAAABAABAEAAAAiAgCAAg=</HashCode>
+      <FileName>Components\GUI\TextRender.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.148" />
+  </Class>
+  <Class Name="EntityEngine.Data.Animation" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAABCAAQgcAAAAQAAAgQBAAQAIAIAEBAAAAAAA=</HashCode>
+      <FileName>Data\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Data.RandomExtentions" Collapsed="true">
+    <Position X="21" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\RandomExtentions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Engine.Entity" Collapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAAIQAAoAAAgIBAAQAAABAAAAAAJAAAAAAAAA=</HashCode>
+      <FileName>Engine\Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EntityEngine.Engine.EntityGame" Collapsed="true">
+    <Position X="17.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAAAAEBgAAAAAIACAAAAgBAAAAQAAAAIAEADA=</HashCode>
+      <FileName>Engine\EntityGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Engine.EntityState" Collapsed="true">
+    <Position X="19.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQSAAAAACAgBgAAAAABAAABAAAEAAAAAoEAAAAAAgA=</HashCode>
+      <FileName>Engine\EntityState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Error" Collapsed="true">
+    <Position X="17.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Error.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.GUI.Image" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.GUI.Text" Collapsed="true">
+    <Position X="2.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>GUI\Text.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Input.DoubleInput" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAIAAAAAAAQAAAAAAAAAAAAAAAEAAAAAAAAEAAI=</HashCode>
+      <FileName>Input\DoubleInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Input.GamePadInput" Collapsed="true">
+    <Position X="5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEAAAAIAAAAAAABAAAAAAAAAAIAAAAEAAAAAAAAEAAI=</HashCode>
+      <FileName>Input\GamePadInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Input.Input" Collapsed="true">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAACAAAAAAAAAAEAAAAAAAAMAAI=</HashCode>
+      <FileName>Input\Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Input.InputHandler" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAZAABAgAIACgAEAAIgAAAABAQAAAAEQAAAAABBIAAA=</HashCode>
+      <FileName>Input\InputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Input.KeyboardInput" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAQAAACAAAAAAAAAAAEAAAAAAAAEAAI=</HashCode>
+      <FileName>Input\KeyboardInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Objects.Emitter" Collapsed="true">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAEAAAABCBAAAACAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Objects\Emitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Objects.Particle" Collapsed="true">
+    <Position X="5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAAAAAAAAABABgAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Objects\Particle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityEngine.Objects.FadeParticle" Collapsed="true">
+    <Position X="5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Particle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="EntityEngine.Components.IComponent" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAAAAAAgAAAAAQAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\IComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EntityEngine.Engine.IEntity" Collapsed="true">
+    <Position X="4.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAAIAAAoAAAgIBAAAAAABAAAAAAJAAAAAAAAA=</HashCode>
+      <FileName>Engine\IEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

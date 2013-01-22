@@ -15,14 +15,13 @@ namespace EntityEngine.GUI
         public new TextRender Render;
         public Text(EntityState es, Vector2 position, string text, SpriteFont font) : base(es)
         {
-            //TODO: Fix the bounds to be the correct height and width.
             Body = new Body(this, position, Vector2.Zero);
             Components.Add(Body);
 
             Physics= new Physics(this);
             Components.Add(Physics);
 
-            Render = new TextRender(this, font, text);
+            Render = new TextRender(this, font, text, position);
             Components.Add(Render);
         }
     }

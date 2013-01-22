@@ -38,5 +38,15 @@ namespace EntityEngine.Components
         {
             Entity.Body.Angle = (float)Math.Atan2(Velocity.X, Velocity.Y);
         }
+
+        public override void ParseXml(XmlParser xmlparser, string nodename)
+        {
+            string rootnode = xmlparser.GetRootNode();
+            rootnode = rootnode + "->" + nodename + "->";
+
+            Drag = xmlparser.GetFloat(rootnode + "Drag");
+            AngularVelocity = xmlparser.GetFloat(rootnode + "AngularVelocity");
+            Velocity = xmlparser.GetVector2(rootnode + "Velocity");
+        }
     }
 }

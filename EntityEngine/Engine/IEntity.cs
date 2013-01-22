@@ -7,13 +7,9 @@ namespace EntityEngine.Engine
     public interface IEntity
     {
         Body Body { get; }
-
         Render Render { get; }
-
         Physics Physics { get; }
-
         Collision Collision { get; }
-
         Health Health { get; }
 
         EntityState StateRef { get; }

@@ -12,7 +12,7 @@ namespace EntityEngine.Engine
 
         public event EntityGameEventHandler StateChange;
 
-        public Rectangle Viewport { get; private set; }
+        public Rectangle Viewport { get; protected set; }
 
         public Game Game{ get; private set; }
         public SpriteBatch SpriteBatch{ get; private set; }
@@ -44,7 +44,7 @@ namespace EntityEngine.Engine
             MakeWindow(g);
         }
 
-        private void MakeWindow(GraphicsDeviceManager g)
+        public void MakeWindow(GraphicsDeviceManager g)
         {
             if ((Viewport.Width > GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width) ||
                 (Viewport.Height > GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height)) return;
@@ -77,10 +77,6 @@ namespace EntityEngine.Engine
         public virtual void Unpause()
         {
             Paused = false;
-        }
-
-        public void ChangeState(string tag)
-        {
         }
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngine.Input
 {
-    public class DoubleInput : Input
+    public sealed class DoubleInput : Input
     {
         public KeyboardInput Key;
         public GamePadInput Button;

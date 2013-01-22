@@ -27,7 +27,7 @@ namespace EntityEngine.Components.GUI
             get { return Vector2.Zero; }
         }
 
-        public TextRender(Entity e, SpriteFont sf, string text)
+        public TextRender(Entity e, SpriteFont sf, string text, Vector2 position)
         {
             Entity = e;
             Text = text;
@@ -45,6 +45,24 @@ namespace EntityEngine.Components.GUI
 
         public void Destroy()
         {
+        }
+
+        public SpriteFont LoadFont(string location)
+        {
+            return Entity.StateRef.GameRef.Game.Content.Load<SpriteFont>(location);
+        }
+
+        public void ParseXml(XmlParser xmlparser, string nodename)
+        {
+            string rootnode = xmlparser.GetRootNode();
+            rootnode = rootnode + "->" + nodename + "->";
+
+            Font = LoadFont(xmlparser.GetString(rootnode + "Font"));
+            Text = xmlparser.GetString(rootnode + "Text");
+            Color = xmlparser.GetColor(rootnode + "Color");
+            Alpha = xmlparser.GetFloat(rootnode + "Alpha");
+            Scale = xmlparser.GetFloat(rootnode + "Scale");
+            Layer = xmlparser.GetFloat(rootnode + "Layer");
         }
     }
 }

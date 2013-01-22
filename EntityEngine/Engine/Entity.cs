@@ -13,18 +13,15 @@ namespace EntityEngine.Engine
         public EventHandler DestroyEvent;
 
         public Body Body { get; protected set; }
-
         public Render Render { get; protected set; }
-
         public Physics Physics { get; protected set; }
-
         public Health Health { get; protected set; }
-
         public Collision Collision { get; protected set; }
-
         public EntityState StateRef { get; private set; }
 
         public List<IComponent> Components { get; protected set; }
+
+        public string Name;
 
         public Entity(EntityState es)
         {
@@ -42,7 +39,7 @@ namespace EntityEngine.Engine
         {
             if (DestroyEvent != null)
                 DestroyEvent(this);
-            foreach (var component in Components)
+            foreach (var component in Components.ToList())
             {
                 component.Destroy();
             }
@@ -50,7 +47,7 @@ namespace EntityEngine.Engine
 
         virtual public void Update()
         {
-            foreach (var component in Components.Where(component => component != null))
+            foreach (var component in Components.ToList().Where(component => component != null))
             {
                 component.Update();
             }
@@ -58,7 +55,7 @@ namespace EntityEngine.Engine
 
         virtual public void Draw(SpriteBatch sb)
         {
-            foreach (var component in Components.Where(component => component != null))
+            foreach (var component in Components.ToList().Where(component => component != null))
             {
                 component.Draw(sb);
             }

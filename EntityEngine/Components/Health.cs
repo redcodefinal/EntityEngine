@@ -35,5 +35,18 @@ namespace EntityEngine.Components
                     DiedEvent(Entity);
             }
         }
+
+        public override void ParseXml(XmlParser xmlparser, string nodename)
+        {
+            string rootnode = xmlparser.GetRootNode();
+            rootnode = rootnode + "->" + nodename + "->";
+            try
+            {
+                HitPoints = xmlparser.GetInt(rootnode + "HitPoints");
+            }
+            catch
+            {
+            }
+        }
     }
 }

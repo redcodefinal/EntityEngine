@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngine.Input
 {
-    public class GamePadInput : Input
+    public sealed class GamePadInput : Input
     {
         private Buttons _button;
 

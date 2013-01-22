@@ -2,7 +2,7 @@
 
 namespace EntityEngine.Input
 {
-    public class KeyboardInput : Input
+    public sealed class KeyboardInput : Input
     {
         private Keys _key;
 

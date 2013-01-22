@@ -53,11 +53,13 @@ namespace EntityEngine.Components
         public bool IsPlaying { get; private set; }
         public bool IsPaused { get; private set; }
 
-         public Sound(Entity e, SoundEffect _sound) : base(e)
+        public Sound(Entity e) : base(e)
+        {
+        }
+
+        public Sound(Entity e, SoundEffect _sound) : base(e)
         {
             SoundEffect = _sound.CreateInstance();
-            IsPlaying = false;
-            IsPaused = false;
             Volume = 1.0f;
             Pitch = 0.0f;
             Pan = 0.0f;
@@ -92,6 +94,23 @@ namespace EntityEngine.Components
             SoundEffect.Stop();
             IsPlaying = false;
             IsPaused = false;
+        }
+
+        public SoundEffect LoadSound(string location)
+        {
+            return Entity.StateRef.GameRef.Game.Content.Load<SoundEffect>(location);
+        }
+
+        public override void ParseXml(XmlParser xmlparser, string path)
+        {
+            string rootnode = xmlparser.GetRootNode();
+            rootnode = rootnode + "->" + path + "->";
+
+            Volume = xmlparser.GetFloat(rootnode + "Volume");
+            Pan = xmlparser.GetFloat(rootnode + "Pan");
+            Pitch = xmlparser.GetFloat(rootnode + "Pitch");
+            Loop = xmlparser.GetBool(rootnode + "Loop");
+            SoundEffect = LoadSound(rootnode + "SoundEffect").CreateInstance();
         }
     }
 }

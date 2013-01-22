@@ -47,20 +47,28 @@ namespace EntityEngine.Data
         {
             get
             {
-                return new Rectangle((int)(Entity.Body.Position.X + Origin.X * Scale), (int)(Entity.Body.Position.Y + Origin.Y * Scale), (int)(TileSize.X * Scale), (int)(TileSize.Y * Scale));
+                return new Rectangle((int)(Entity.Body.Position.X + Origin.X * Scale.X), (int)(Entity.Body.Position.Y + Origin.Y * Scale.Y), (int)(TileSize.X * Scale.X), (int)(TileSize.Y * Scale.Y));
             }
         }
 
-        public override Vector2 Origin
-        {
-            get { return new Vector2(TileSize.X/2.0f, TileSize.Y/2.0f); }
-        }
-
-        public Animation(Entity e, Texture2D texture, Vector2 tileSize, int framesPerSecond, string key) : base(e, texture)
+        public Animation(Entity e, Texture2D texture, Vector2 tileSize, int framesPerSecond, string key) 
+            : base(e, texture)
         {
             TileSize = tileSize;
             FramesPerSecond = framesPerSecond;
             Key = key;
+
+            Origin = new Vector2(TileSize.X / 2.0f, TileSize.Y / 2.0f);
+
+            FrameTimer = new Timer(e);
+            FrameTimer.Milliseconds = MillisecondsPerFrame;
+            FrameTimer.LastEvent += AdvanceNextFrame;
+        }
+
+        public Animation(Entity e)
+            : base(e)
+        {
+            Origin = new Vector2(TileSize.X / 2.0f, TileSize.Y / 2.0f);
 
             FrameTimer = new Timer(e);
             FrameTimer.Milliseconds = MillisecondsPerFrame;
@@ -104,6 +112,19 @@ namespace EntityEngine.Data
         public void Stop()
         {
             FrameTimer.Stop();
+        }
+
+        public override void ParseXml(XmlParser xmlparser, string nodename)
+        {
+            base.ParseXml(xmlparser, nodename);
+            string rootnode = xmlparser.GetRootNode();
+            rootnode = rootnode + "->" + nodename + "->";
+
+            TileSize = xmlparser.GetVector2(rootnode + "TileSize");
+            FramesPerSecond = xmlparser.GetInt(rootnode + "FramesPerSecond");
+            CurrentFrame = xmlparser.GetInt(rootnode + "CurrentFrame");
+            Key = xmlparser.GetString(rootnode + "Key");
+
         }
     }
 }

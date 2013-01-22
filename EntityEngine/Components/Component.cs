@@ -23,5 +23,10 @@ namespace EntityEngine.Components
         public virtual void Destroy()
         {
         }
+
+        public virtual void ParseXml(XmlParser xmlparser, string nodename)
+        {
+            
+        }
     }
 }

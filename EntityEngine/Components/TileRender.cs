@@ -14,13 +14,13 @@ namespace EntityEngine.Components
 
         public int Rows { get { return (int)(Texture.Height / TileSize.Y); } }
 
-        public override Vector2 Origin { get { return new Vector2(TileSize.X / 2.0f, TileSize.Y / 2.0f); } }
-
         public override Rectangle DrawRect
         {
             get
             {
-                return new Rectangle((int)(Entity.Body.Position.X + Origin.X * Scale), (int)(Entity.Body.Position.Y + Origin.Y * Scale), (int)(TileSize.X * Scale), (int)(TileSize.Y * Scale));
+                return new Rectangle((int) (Entity.Body.Position.X + Origin.X*Scale.X),
+                                     (int) (Entity.Body.Position.Y + Origin.Y*Scale.Y), (int) (TileSize.X*Scale.X),
+                                     (int) (TileSize.Y*Scale.Y));
             }
         }
 
@@ -46,6 +46,7 @@ namespace EntityEngine.Components
             : base(e, texture)
         {
             TileSize = tilesize;
+            Origin = new Vector2(TileSize.X/2.0f, TileSize.Y/2.0f);
         }
 
         public override void Draw(SpriteBatch sb)

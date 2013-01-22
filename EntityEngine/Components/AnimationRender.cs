@@ -19,7 +19,7 @@ namespace EntityEngine.Components
             get { return CurrentAnimation.DrawRect; }
         }
 
-        public AnimationRender(Entity e) : base(e, null)
+        public AnimationRender(Entity e) : base(e)
         {
             Animations =  new Dictionary<string, Animation>();
         }

@@ -10,5 +10,6 @@ namespace EntityEngine.Components
         void Update();
         void Draw(SpriteBatch sb);
         void Destroy();
+        void ParseXml(XmlParser xmlparser, string nodename);
     }
 }
